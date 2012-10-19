@@ -1,0 +1,175 @@
+#+STARTUP: beamer
+#+TITLE: CSCE-431: Configuration Management
+#+AUTHOR: Jaakko Järvi, John Freeman
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [presentation,notes]
+#+BEAMER_FRAME_LEVEL: 2
+
+#+BEAMER_HEADER_EXTRA: \usetheme{default}\usecolortheme{default}
+#+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_envargs(Env Args) %4BEAMER_col(Col) %8BEAMER_extra(Extra)
+#+PROPERTY: BEAMER_col_ALL 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 :ETC
+
+#+latex_header: \mode<beamer>{\usetheme{Madrid}}
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Outline}\tableofcontents[currentsection]\end{frame}}
+
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:nil ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+LANGUAGE:  en
+
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+
+#+latex: \newcommand{\cblue}[1]{{\color{blue}#1}}
+#+latex: \newcommand{\cred}[1]{{\color{red}#1}}
+#+latex: \newcommand{\cgreen}[1]{{\color{green}#1}}
+
+* Version Control Systems
+
+** Version control system
+
+
+A _tool_ for maintaining a _record of changes_ in a _set of documents_
+
+- e.g. CVS, Subversion, Git, Darcs, Mercurial
+
+- Good for managing
+  - source code
+  - documentation
+  - scripts
+  - Makefiles
+  - other text files
+
+- Can track binary files, but cannot view changes "line by line"
+# because there are no "lines" in a binary file
+
+** Reasons to use version control
+
+- Helps collaboration
+- Can roll back mistakes
+- Can maintain different configurations
+
+** Reasons to not use version control                            
+
+\pause
+
+#+begin_latex
+\vfill
+  \begin{center}
+  THIS PAGE INTENTIONALLY LEFT BLANK
+  \end{center}
+\vfill
+#+end_latex
+
+** Reason to use version control for everything you do
+
+- You find a set of files like this on your hard drive:
+  
+#+begin_example
+Report_draft.txt
+Report.doc
+Report2.doc
+Report2a.doc
+Report_2011_03_02.doc
+...
+NewReport_2011_05.doc
+NewReport_submitted.doc
+NewReport_submittedv2.doc
+#+end_example
+
+# discuss centralized vs distributed later, during multi-user workflow
+
+* Git
+
+** About Git
+
+- Most widely used distributed version control system
+- Started by Linus Torvalds to support Linux kernel development
+- Borrows from Unix philosophy:
+  - collection of programs and scripts that can be chained together
+  - flexibility lets it support different workflows
+
+- Each VC system has its own terminology, but similar basic concepts
+  - Our discussion will use established Git terms
+
+** Sources for information
+
+- Quick to learn the basic commands
+- Commands not used every day, hard to remember, but many places
+  to refresh memory:
+
+  - [[http://book.git-scm.com/index.html][The Pro Git Book]]
+  - Google for ``git cheat sheet''
+
+- Other topics in this lesson covered by and taken from others:
+
+  - [[http://marklodato.github.com/visual-git-guide/index-en.html][A Visual Git Reference]]
+  - [[http://eagain.net/articles/git-for-computer-scientists/][Git for Computer Scientists]]
+  - [[http://nvie.com/posts/a-successful-git-branching-model/][A successful Git branching model]]
+
+* Repositories
+
+** Repositories in general
+
+- A repository is a collection of *timelines*
+- Each timeline is a series of *versions*
+- Each version builds off the one(s) before it
+- Timelines can *diverge* or *converge*
+- In Git terminology,
+  - a version is a *commit*
+  - a divergence is a *branch*
+  - a convergence is a *merge*
+
+# picture: several timelines, including a branch and merge
+   
+** Git objects: commits
+
+- A commit is a type of Git *object*
+  - Git stores a "database" of objects as a collection of files
+  - Each object is identified by the SHA1 hash of its contents
+- Each commit
+  - has a time, author, and log message
+  - may reference zero (if root), one, or more (if a merge) parent commits
+  - references a *tree* (by its SHA1 hash)
+  
+# picture of commit internal structure
+
+
+** Git objects: trees
+   
+- A tree is another type of object
+- Think of it as a snapshot of an entire directory
+- Each tree associates names with files and subdirectories
+  - That is, it maps strings to SHA1 hashes
+
+# picture of tree internal structure
+
+** Git objects: blobs
+   
+- Files in Git are stored as *blob* objects
+- Each blob holds the entire contents of a file
+  - If two versions of a file are similar, then it can be cheaper to
+    replace one version with the list of differences, or *delta*,
+    between the two versions
+  - Some VC systems store deltas for every file
+  - Git only periodically packs objects using deltas
+
+    
+** Git objects all together
+   
+- A commit references a tree which recursively holds a snapshot of
+  every file in the project
+
+# picture of commit pointing to tree pointing to blobs
+   
+
+** Shared objects
+   
+- Commits will share objects that have not changed between them
+  
+# picture of two trees with shared blobs
+   
+# picture of two commits with shared trees (only log message, parent different)
+   
+
