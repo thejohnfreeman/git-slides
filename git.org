@@ -25,9 +25,9 @@
 #+latex: \newcommand{\cred}[1]{{\color{red}#1}}
 #+latex: \newcommand{\cgreen}[1]{{\color{green}#1}}
 
-* Version Control Systems
+* Version Control
 
-** Version control system
+** Version control system (VCS)
 
 
 A _tool_ for maintaining a _record of changes_ in a _set of documents_
@@ -77,9 +77,67 @@ NewReport_2011_05.doc
 NewReport_submitted.doc
 NewReport_submittedv2.doc
 #+end_example
+   
+* Mental Model
+  
+** Version
+   
+- Consider editing a document in a word processor
+- Each time you save, it copies what you've written to a file
+- Each copy is a *version* of the document
+- VCSes let you save a directory
+  - Each time you save it stores a recursive copy of the directory
+- Each version will have some identifier
+- Most tools provide a method to *ignore* specific files or
+  subdirectories
+  - Such files will be left *untracked*
+    
+# picture of a directory with a couple files
+   
+** Timeline
 
-# discuss centralized vs distributed later, during multi-user workflow
+- As you continue to make changes and commit, you build a *timeline*
+  of versions
+  - Like history in a word processor
+- Each version is derived from another, its *parent*
+- In a VCS, each commit has a pointer to its parent
 
+# arrows appear to be pointing in the "wrong" direction
+    
+# picture of single timeline, with a file changing over time
+
+** Divergence
+   
+- VCSes let you move back and forward along a timeline
+  - Like undo and redo in a word processor
+- If you return to an old version and commit new changes,
+  - The VCS creates a new, divergent timeline
+  - Two versions will share the same parent
+  
+# picture of timelines diverging
+   
+** Convergence
+   
+- This is where we leave the word processor analogy
+- If different changes are orthogonal, they can be combined automatically
+- Multiple timelines converge
+- Sometimes changes will not be orthogonal and *conflicts* arise
+- Conflicts must be *resolved* manually
+  
+# picture of timelines converging, with orthogonal changes in a file
+   
+  
+** Summary
+
+- A repository is a collection of timelines
+- Each timeline is a series of versions
+- Each version builds off the one(s) before it
+- Each version describes the state of a directory
+- Timelines can diverge or converge
+
+# picture: several timelines, including a branch and merge
+   
+   
 * Git
 
 ** About Git
@@ -107,22 +165,20 @@ NewReport_submittedv2.doc
   - [[http://marklodato.github.com/visual-git-guide/index-en.html][A Visual Git Reference]]
   - [[http://eagain.net/articles/git-for-computer-scientists/][Git for Computer Scientists]]
   - [[http://nvie.com/posts/a-successful-git-branching-model/][A successful Git branching model]]
+    
+** Terms
 
-* Repositories
-
-** Repositories in general
-
-- A repository is a collection of *timelines*
-- Each timeline is a series of *versions*
-- Each version builds off the one(s) before it
-- Timelines can *diverge* or *converge*
 - In Git terminology,
+  - a timeline is a *branch*
   - a version is a *commit*
-  - a divergence is a *branch*
-  - a convergence is a *merge*
+  - a document is a file or *blob*
+  - a set of documents is a directory or *tree*
+  - to diverge is to *branch*
+  - to converge is to *merge*
 
-# picture: several timelines, including a branch and merge
-   
+
+* Git Object Model
+
 ** Git objects: commits
 
 - A commit is a type of Git *object*
@@ -134,7 +190,6 @@ NewReport_submittedv2.doc
   - references a *tree* (by its SHA1 hash)
   
 # picture of commit internal structure
-
 
 ** Git objects: trees
    
@@ -155,7 +210,6 @@ NewReport_submittedv2.doc
   - Some VC systems store deltas for every file
   - Git only periodically packs objects using deltas
 
-    
 ** Git objects all together
    
 - A commit references a tree which recursively holds a snapshot of
@@ -163,13 +217,32 @@ NewReport_submittedv2.doc
 
 # picture of commit pointing to tree pointing to blobs
    
-
 ** Shared objects
    
 - Commits will share objects that have not changed between them
   
 # picture of two trees with shared blobs
    
-# picture of two commits with shared trees (only log message, parent different)
+# picture of two commits with shared trees (only log message, parent
+# different)
    
+* Git Tree Model
+  
+** Branch
 
+** Index
+
+** Working Directory
+   
+* Branching Model
+  
+** Master
+** Develop
+** Release
+** Feature
+** Hot-fix
+* Workflows
+
+** Single-user workflow
+
+** Multi-user workflow
