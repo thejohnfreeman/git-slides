@@ -1,6 +1,12 @@
 \tikzset{
-file/.style={attached HEAD, text ragged}
+file/.style={attached HEAD, text ragged},
+file line/.style={object line, color=HEAD}
 }
 
-\newcommand\file[3][0,.5]{\node [file] (#2) at (#1) {#3};}
+\newcommand\file[3][0,0]{
+  \node [file, minimum height=0,text width=2\g,font=\small]
+  (#2) at (#1) {#3};
+}
+
+\def\root #1 at (#2);{\node [commit] (#1) at (#2) {#1};}
 

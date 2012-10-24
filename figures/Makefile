@@ -1,15 +1,17 @@
 .PHONY : all clean
 
 FILES := \
-	version
+	mm-version
 
 MAKEFIGS = $(MAKE) -f Makefile.vgr FILES="$(FILES)" SHELL=/bin/bash
 
-all : $(FILES:%=%.svg.png)
+all : $(FILES:%=%.svg.png) common.tex
 	$(MAKEFIGS)
 
-%.svg.png : %.tex morecommon.tex
-	@touch $<
+%.svg.png : %.tex
+
+common.tex : morecommon.tex
+	@touch $@
 
 clean :
 	$(MAKEFIGS) clean

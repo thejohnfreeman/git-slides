@@ -78,12 +78,13 @@ NewReport_submitted.doc
 NewReport_submittedv2.doc
 #+end_example
    
+   
 * Mental Model
   
 ** Version
    
-- Consider editing a document in a word processor
-- Each time you save, it copies what you've written to a file
+- Consider editing a document
+- Each time you save, editor copies what you've written to a file
 - Each copy is a *version* of the document
 - VCSes let you save a directory
   - Each time you save it stores a recursive copy of the directory
@@ -92,7 +93,16 @@ NewReport_submittedv2.doc
   subdirectories
   - Such files will be left *untracked*
     
-# picture of a directory with a couple files
+# picture of a single commit with a single file
+   
+** blah
+   
+#+begin_center
+#+ATTR_LaTeX: width=\textwidth
+[[file:figures/mm-version.svg.png]]
+#+end_center
+
+
    
 ** Timeline
 
