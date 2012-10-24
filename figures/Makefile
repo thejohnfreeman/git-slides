@@ -5,8 +5,11 @@ FILES := \
 
 MAKEFIGS = $(MAKE) -f Makefile.vgr FILES="$(FILES)" SHELL=/bin/bash
 
-all : morecommon.tex $(FILES:%=%.tex)
+all : $(FILES:%=%.svg.png)
 	$(MAKEFIGS)
+
+%.svg.png : %.tex morecommon.tex
+	@touch $<
 
 clean :
 	$(MAKEFIGS) clean
