@@ -5,10 +5,8 @@ FILES := \
 
 MAKEFIGS = $(MAKE) -f Makefile.vgr FILES="$(FILES)" SHELL=/bin/bash
 
-all : $(FILES:%=%.svg.png) common.tex
+all : common.tex
 	$(MAKEFIGS)
-
-%.svg.png : %.tex
 
 common.tex : morecommon.tex
 	@touch $@
