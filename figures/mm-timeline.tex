@@ -1,0 +1,32 @@
+\input{common.tex}
+\input{morecommon.tex}
+\geometry{papersize={12\g,5\g}}
+\begin{document}
+\begin{tikzpicture}[main]
+    \boundingbox
+
+    \root a (a) at (-2.1,1);
+    \file[-2.1,0]{atxt}{
+      // fruits.txt\\
+      apple
+    }
+    \path [HEAD line] (a) edge (atxt);
+
+    \commit b (b) -> a;
+    \file[0,0]{btxt}{
+      // fruits.txt\\
+      apple\\
+      banana
+    }
+    \path [HEAD line] (b) edge (btxt);
+
+    \commit c (c) -> b;
+    \file[2.1,0]{ctxt}{
+      // fruits.txt\\
+      apple\\
+      banana\\
+      cherry
+    }
+    \path [HEAD line] (c) edge (ctxt);
+\end{tikzpicture}
+\end{document}

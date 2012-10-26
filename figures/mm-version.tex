@@ -1,14 +1,15 @@
 \input{common.tex}
 \input{morecommon.tex}
-\geometry{papersize={4\g,4\g}}
+\geometry{papersize={12\g,5\g}}
 \begin{document}
 \begin{tikzpicture}[main]
     \boundingbox
-    \root a at (0,.75);
-    \file[0,-.5]{atxt}{
+
+    \root a (a) at (0,1);
+    \file[0,0]{atxt}{
       // fruits.txt\\
       apple
     }
-    \path [commit line] (a) edge (atxt);
+    \path [HEAD line] (a) edge (atxt);
 \end{tikzpicture}
 \end{document}

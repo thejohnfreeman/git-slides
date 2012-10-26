@@ -1,7 +1,8 @@
 .PHONY : all clean
 
 FILES := \
-	mm-version
+	mm-version \
+	mm-timeline
 
 MAKEFIGS = $(MAKE) -f Makefile.vgr FILES="$(FILES)" SHELL=/bin/bash
 
