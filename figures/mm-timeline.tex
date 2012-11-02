@@ -6,14 +6,14 @@
     \boundingbox
 
     \root a (a) at (-2.1,1);
-    \file[-2.1,0]{atxt}{
+    \file{a}{atxt}{
       // fruits.txt\\
       apple
     }
     \path [HEAD line] (a) edge (atxt);
 
     \commit b (b) -> a;
-    \file[0,0]{btxt}{
+    \file{b}{btxt}{
       // fruits.txt\\
       apple\\
       banana
@@ -21,7 +21,7 @@
     \path [HEAD line] (b) edge (btxt);
 
     \commit c (c) -> b;
-    \file[2.1,0]{ctxt}{
+    \file{c}{ctxt}{
       // fruits.txt\\
       apple\\
       banana\\
