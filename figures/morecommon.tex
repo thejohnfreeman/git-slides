@@ -4,7 +4,7 @@ file line/.style={object line, color=HEAD}
 }
 
 \newcommand\file[3]{
-  \node[file] (#2) [node distance=2\g, below of=#1] {#3};
+  \node[file] (#2) [below=1\g of #1] {#3};
 }
 
 \def\root #1 (#2) at (#3);{
