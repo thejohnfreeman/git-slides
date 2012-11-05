@@ -25,6 +25,8 @@
 #+latex: \newcommand{\cred}[1]{{\color{red}#1}}
 #+latex: \newcommand{\cgreen}[1]{{\color{green}#1}}
 
+#+latex: \graphicspath{{./figures/}}
+
 * Version Control
 
 ** Version control system (VCS)
@@ -86,7 +88,7 @@ NewReport_submittedv2.doc
 - Consider editing a document
 - Each time you save, editor copies what you've written to a file
 - Each copy is a *version* of the document
-- VCSes let you save a directory
+- VCS lets you save a directory
   - Each time you save it stores a recursive copy of the directory
 - Each version will have some identifier
 - Most tools provide a method to *ignore* specific files or
@@ -96,8 +98,7 @@ NewReport_submittedv2.doc
 # picture of a single commit with a single file
    
 #+begin_center
-#+ATTR_LaTeX: width=\textwidth
-[[file:figures/mm-version.svg.png]]
+#+latex: \includegraphics[width=\linewidth]{mm-version}
 #+end_center
 
    
@@ -112,6 +113,11 @@ NewReport_submittedv2.doc
 # arrows appear to be pointing in the "wrong" direction
     
 # picture of single timeline, with a file changing over time
+
+#+begin_center
+#+latex: \includegraphics[width=\linewidth]{mm-timeline}
+#+end_center
+
 
 ** Divergence
    

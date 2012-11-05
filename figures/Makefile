@@ -7,11 +7,14 @@ FILES := \
 MAKEFIGS = $(MAKE) -f Makefile.vgr FILES="$(FILES)" SHELL=/bin/bash
 
 all : common.tex
-	$(MAKEFIGS)
+	@$(MAKEFIGS)
+	@for f in *.svg.png; do \
+		mv $$f `echo $$f | sed 's/\.svg\.png$$/.png/'`; \
+	done
 
 common.tex : morecommon.tex
 	@touch $@
 
 clean :
-	$(MAKEFIGS) clean
+	@$(MAKEFIGS) clean
 
