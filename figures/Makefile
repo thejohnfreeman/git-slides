@@ -2,7 +2,9 @@
 
 FILES := \
 	mm-version \
-	mm-timeline
+	mm-timeline \
+	mm-diverge \
+	mm-converge
 
 MAKEFIGS = $(MAKE) -f Makefile.vgr FILES="$(FILES)" SHELL=/bin/bash
 

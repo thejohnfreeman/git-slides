@@ -1,0 +1,17 @@
+\input{common.tex}
+\input{morecommon.tex}
+\geometry{papersize={20\g,5\g}}
+\begin{document}
+\begin{tikzpicture}[main]
+    \boundingbox
+
+    \root a (a) at (-3,0);
+    \commit b (b) -> a;
+
+    \commit c (c) -> b;
+    \commit d (d) -> c;
+
+    \commit 2 (2) -> b;
+    \commit 3 (3) -> 2;
+\end{tikzpicture}
+\end{document}

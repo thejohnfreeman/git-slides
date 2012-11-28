@@ -108,7 +108,7 @@ NewReport_submittedv2.doc
   of versions
   - Like history in a word processor
 - Each version is derived from another, its *parent*
-- In a VCS, each commit has a pointer to its parent
+  - In diagrams, each version points to its parent
 
 # arrows appear to be pointing in the "wrong" direction
     
@@ -128,7 +128,12 @@ NewReport_submittedv2.doc
   - Two versions will share the same parent
   
 # picture of timelines diverging
-   
+
+#+begin_center
+#+latex: \includegraphics[width=\linewidth]{mm-diverge}
+#+end_center
+
+
 ** Convergence
    
 - This is where we leave the word processor analogy
@@ -139,6 +144,10 @@ NewReport_submittedv2.doc
   
 # picture of timelines converging, with orthogonal changes in a file
    
+#+begin_center
+#+latex: \includegraphics[width=\linewidth]{mm-converge}
+#+end_center
+
   
 ** Summary
 

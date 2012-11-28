@@ -1,0 +1,21 @@
+\input{common.tex}
+\input{morecommon.tex}
+\begin{document}
+\begin{center}
+\begin{tikzpicture}[main]
+    \boundingbox
+
+    \root a (a) at (-3,0);
+    \commit b (b) -> a;
+
+    \commit c (c) -> b;
+    \commit d (d) -> c;
+
+    \commit 2 (2) -> b;
+    \commit 3 (3) -> 2;
+
+    \commit e (e) -> d;
+    \path [commit line, bend right=15] (e) edge (3);
+\end{tikzpicture}
+\end{center}
+\end{document}
